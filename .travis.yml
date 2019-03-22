@@ -4,18 +4,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t dima-b/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t mityab/react-test -f ./client/Dockerfile.dev ./client
 script:
-  - docker run dima-b/react-test npm test -- --coverage
+  - docker run mityab/react-test npm test -- --coverage
 after_success:
-  - docker build -t dima-b/multi-client ./client
-  - docker build -t dima-b/multi-nginx ./nginx
-  - docker build -t dima-b/multi-server ./server
-  - docker build -t dima-b/multi-worker ./worker
+  - docker build -t mityab/multi-client ./client
+  - docker build -t mityab/multi-nginx ./nginx
+  - docker build -t mityab/multi-server ./server
+  - docker build -t mityab/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push dima-b/multi-client
-  - docker push dima-b/multi-nginx
-  - docker push dima-b/multi-server
-  - docker push dima-b/multi-worker
+  - docker push mityab/multi-client
+  - docker push mityab/multi-nginx
+  - docker push mityab/multi-server
+  - docker push mityab/multi-worker
